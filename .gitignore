@@ -1,2 +1,2 @@
-NODE_ENV=development
-console.log(process.env.NODE_ENV)
+git rm -r --cached node_modules
+git rm --cached .env
