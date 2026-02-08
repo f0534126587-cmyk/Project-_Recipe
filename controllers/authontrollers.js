@@ -14,6 +14,6 @@ exports.login=async (req, res) => {
        email:email
     }
     const myToken=jwt.sign(infoUser,process.env.ACCESS_TOKEN_SECRET)
-    res.send(myToken)
+     return res.send(myToken)
 }
 
