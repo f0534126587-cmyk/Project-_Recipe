@@ -1,10 +1,11 @@
 const Recipe = require("../models/Recipe");
+//הוספת מתכון
 exports.addRecipe = async(req,res)=>{
     const recipe =await Recipe.create(req.body)
     res.json(recipe)
 }
 
-
+//חיפוש מתכון עפ"י שם
 exports.getRecipe = async (req, res) => {
   const { name } = req.params
  const recipe=await Recipe.find({name :name})
@@ -17,7 +18,7 @@ exports.getRecipe = async (req, res) => {
 }
 
 
-
+//מחיקת מתכון
 exports.deleteRecipe = async (req, res) => {
   const { name } = req.params;
   try {
@@ -31,13 +32,14 @@ exports.deleteRecipe = async (req, res) => {
     res.status(500).json({ message: 'Failed to delete recipe' });
   }
 }
-
+//קבלת כל המתכונים
 exports.getAllRecipes = async (req, res) => {
   const recipes = await Recipe.find()
   if (recipes)
     res.json(recipes)
   res.status(400).json({ err: `not Found` })
 }
+//עידכון מתכוןו 
 exports.updateRecipe = async (req, res) => {
   const { name } = req.params;
   const { time, ingredients, category, isFavorite } = req.body;

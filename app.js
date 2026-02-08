@@ -11,16 +11,14 @@ const recipe=require('./routes/recipeRoutes')
 const authRoutes=require('./routes/authRoutes');
 const { login } = require('./controllers/authontrollers');
 
-app.use(errMiddleware);
+
 const connectDB = require("./config/db")
 connectDB()
 
 app.use('/login',authRoutes)
 app.use('/recipe',recipe)
 
-app.listen(3000,function(){
-    console.log('app 3000 is done!!');
-});
+
 mongoose.connection.once('open', () => {
 console.log('Connected to MongoDB')
 app.listen(PORT, () => console.log(`Server running on port
@@ -29,4 +27,5 @@ ${PORT}`))
 mongoose.connection.on('error', err => {
 console.log(err)
 })
+app.use(errMiddleware);
 
